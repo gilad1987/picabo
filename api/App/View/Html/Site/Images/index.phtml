@@ -1,0 +1,24 @@
+<article id="main" class="center" style="">
+
+    <?php include 'templates/header.php';?>
+    <a href="<?php echo BASE_URL; ?>" class="logo-side"></a>
+
+
+    <?php if(empty($this->image_src)):?>
+
+        <div id="page404">
+            <p>:/</p>
+            <h1>Nope, not here.</h1>
+        </div>
+
+    <? else:?>
+
+        <div id="image-container">
+            <img src="<?php echo $this->escape($this->image_src); ?>">
+        </div>
+    <?php endif; ?>
+
+    <?php include 'templates/footer.php';?>
+
+
+</article>
