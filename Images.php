@@ -11,11 +11,14 @@ class Images
         if(empty($imageModel) || (!empty($imageModel)  && $imageModel->is_deleted) ){
            return null;
         }
-        $query = "UPDATE  `picabo`.`uploads` SET `is_deleted` = '1' WHERE id = '{$imageModel->id}'" ;
+        $query = "UPDATE `uploads` SET `is_deleted` = '1' WHERE id = '{$imageModel->id}'" ;
         $result = Db::getInstance()->getConn()->query($query);
 
         $imageData = base64_encode(file_get_contents($imageModel->src));
-        $src = 'data: '.mime_content_type($imageModel->src).';base64,'.$imageData;
+
+        $finfo = new finfo();
+        $fileMimeType = $finfo->file($imageModel->src, FILEINFO_MIME_TYPE);
+        $src = 'data: '.$fileMimeType.';base64,'.$imageData;
 
         $this->delete($imageModel);
         return $src;
