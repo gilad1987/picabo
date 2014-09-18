@@ -199,5 +199,38 @@ footer #menu
 	margin-top: 50px;
 }
 
+.file_upload_container
+{
+	width:800px;
+	height:360px
+
+}
+.input_image_url_container input
+{
+	display: block;
+	margin:0 auto;
+	font-size: 35px;
+	text-align: center;
+	border: 1px solid rgb(145, 141, 141);
+
+
+	width: 100%;
+}
+.input_image_url_container
+{
+	border: 8px solid rgba(0,0,0,0.3);
+	outline: none;
+	/* padding: 8px; */
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+
+.file_upload_container .input_image_url_container{display: none}
+.file_upload_container.image_uploaded_success{padding-top: 120px; height: 240px;}
+.file_upload_container.image_uploaded_success .input_image_url_container{display: block;margin: 0 auto;width: 487px;}
+.file_upload_container.image_uploaded_success .dropzone{display: none}
+
 
 

@@ -13,19 +13,15 @@
             success:function(file,response,xhr){
                 response = JSON.parse(response);
                 if(response.success){
-                    var input = document.createElement('input');
-                    input.setAttribute('type','text');
-                    input.className = "input_url";
-                    input.value = response.url;
-                    $('#form_container').html(input);
+                    $('#image-url').val(response.url);
+                    $('#file-upload-container').addClass('image_uploaded_success');
                 }
             }
         };
     </script>
 
     <style>
-        .dropzone-conteiner{width:800px; height:360px}
-        .dropzone-conteiner input{display: block; margin:0 auto; width:80%; line-height: 30px; font-size: 30px; text-align: center}
+        
     </style>
 	
 	<meta property="og:type"            content="website" /> 
@@ -41,10 +37,19 @@
 	<?php require_once "templates/header.php" ?>
     <h1 class="center"><img src="view/images/logo-200.png"></h1>		
     <h2 id="subtitle">Share Self-Deleted Images<br> Secretly & Effortlessly.</h2>
-    <div class="dropzone-conteiner" id="form_container">
-        <form  class='dropzone' id="uploadfile" action="upload_file.php" method="post" enctype="multipart/form-data"></form>
-    </div>
 
+    <div id='file-upload-container' class='file_upload_container'>
+    
+        <div class="dropzone-conteiner" id="form_container">
+            <form  class='dropzone' id="uploadfile" action="upload_file.php" method="post"enctype="multipart/form-data"></form>
+        </div>
+
+        <div class='input_image_url_container'>
+            <input type='text' id='image-url' class='image_url'>
+        </div>
+    
+    </div>
+    
 
     <div id="description-menu">
         <div class="col-3">
