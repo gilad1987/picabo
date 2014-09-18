@@ -6,19 +6,19 @@ class Images
         $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'" ;
         require_once 'Db.php';
         $result = Db::getInstance()->getConn()->query($query);
-        $image = $result->fetchObject();
+        $imageModel = $result->fetchObject();
 
-        if($image == false){
-            header('Location: 404.php');
+        if(empty($imageModel) || (!empty($imageModel)  && $imageModel->is_deleted) ){
+           return null;
         }
+        $query = "UPDATE  `picabo`.`uploads` SET `is_deleted` = '1' WHERE id = '{$imageModel->id}'" ;
+        $result = Db::getInstance()->getConn()->query($query);
 
-//        $time = time();
-//        $query = "DELETE FROM `exit`.`images` WHERE id = '{$image->id}'" ;
-//        $result = Db::getInstance()->getConn()->query($query);
+        $imageData = base64_encode(file_get_contents($imageModel->src));
+        $src = 'data: '.mime_content_type($imageModel->src).';base64,'.$imageData;
 
-        header("Content-Type: image/jpeg");
-        echo file_get_contents($image->src);
-        $this->delete($image);
+        $this->delete($imageModel);
+        return $src;
     }
 
     private function delete($image)
@@ -27,6 +27,7 @@ class Images
         $file_size = filesize($image->src);
         $string = str_repeat("0",$file_size);
         fwrite($handle,$string,$file_size);
+        fclose($handle);
         unlink($image->src);
     }
 }

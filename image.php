@@ -1,13 +1,12 @@
-<!--
+<?php
 if(!isset($_GET['file_token'])){
     die('No Access Permission');
 }
 
 require_once 'Images.php';
 $image = new Images();
-$image->get($_GET['file_token']);
-
- -->
+$src = $image->get($_GET['file_token']);
+?>
 
 
 <html>
@@ -22,10 +21,19 @@ $image->get($_GET['file_token']);
 		<a href="/" class="logo-side"></a>
 
 
-		<div id="image-container">		
-			<img src="http://news.distractify.com/wp-content/uploads/2014/01/new-userguide-image.jpg">			
-		</div>
+        <?php if(empty($src)):?>
 
+            <div id="page404">
+                <p>:/</p>
+                <h1>Nope, not here.</h1>
+            </div>
+
+        <? else:?>
+
+            <div id="image-container">
+                <img src="<?php echo $src; ?>">
+            </div>
+        <?php endif; ?>
 
 		<?php include 'templates/footer.php';?>
 

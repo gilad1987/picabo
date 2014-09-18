@@ -26,7 +26,7 @@
 	
 	<meta property="og:type"            content="website" /> 
 	<meta property="og:url"             content="http://www.giladt.com/picabo" />
-	<meta property="og:title"           content="<?php echo $title ?>" /> 
+	<meta property="og:title"           content="<?php echo '' ?>" />
 	<meta property="og:image"           content="" /> 
 	
 </head>
