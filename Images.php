@@ -16,8 +16,13 @@ class Images
 
         $imageData = base64_encode(file_get_contents($imageModel->src));
 
-        $finfo = new finfo();
-        $fileMimeType = $finfo->file($imageModel->src, FILEINFO_MIME_TYPE);
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $fileMimeType = finfo_file($finfo, $imageModel->src);
+        finfo_close($finfo);
+
+//        $finfo = new finfo();
+//        $fileMimeType = $finfo->file($imageModel->src, FILEINFO_MIME_TYPE);
         $src = 'data: '.$fileMimeType.';base64,'.$imageData;
 
         $this->delete($imageModel);
