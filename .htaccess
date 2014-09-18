@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^([A-Z0-9a-z]+)$ image.php?file_token=$1 [QSA,L]
