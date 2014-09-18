@@ -21,7 +21,7 @@ class Upload
     {
         $name = '';
         $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
-        for ($i = 0; $i < 12; $i++) {
+        for ($i = 0; $i < 7; $i++) {
             $n = rand(0, strlen($alphabet)-1);
             $name .= $alphabet[$n];
         }

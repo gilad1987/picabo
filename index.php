@@ -72,6 +72,25 @@
 
 	<?php require_once "templates/footer.php" ?>
 
+<<<<<<< HEAD
+=======
+
+    <footer>
+        <hr>
+        <div id="copyright">
+            All copyrights reserved &copy; 2014 <strong>&#183;</strong> Made with &#9825 in Tel-Aviv <strong>&#183;</strong> ### Images shared!
+        </div>
+        <div id="menu">
+            <a href="./">Home</a>
+            <strong>&#183;</strong>
+            <a href="mailto:a@a.com">Contact Us</a>
+            <strong>&#183;</strong>
+            <a href="changes.php">Changes</a>
+
+        </div>
+
+    </footer>
+>>>>>>> 4db70aee5e5715ec589d02d4f8c98a9acaa77907
 
 
 </article>
