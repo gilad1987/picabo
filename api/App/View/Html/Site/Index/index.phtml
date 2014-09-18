@@ -1,0 +1,47 @@
+
+
+<article id="main" class="center" style="">
+    <?php require_once "templates/header.php" ?>
+    <h1 class="center"><img src="view/images/logo-200.png"></h1>
+    <h2 id="subtitle">Share Self-Deleted Images<br> Secretly & Effortlessly.</h2>
+
+    <div id='file-upload-container' class='file_upload_container'>
+
+        <div class="dropzone-conteiner" id="form_container">
+            <form  class='dropzone' id="uploadfile" action="<?php echo $this->url(array("ctrl"=>"uploads","act"=>"index"))?>" method="post"enctype="multipart/form-data"></form>
+        </div>
+
+        <div class='input_image_url_container'>
+            <input type='text' id='image-url' class='image_url'>
+        </div>
+
+    </div>
+
+
+    <div id="description-menu">
+        <div class="col-3">
+            <img src="view/images/dragndrop.png">
+            <h2>Drag . Drop . Link</h2>
+            <p>
+
+            </p>
+        </div>
+        <div class="col-3">
+            <img src="view/images/shred.png">
+            <h2>Secure</h2>
+            <p>
+
+            </p>
+        </div>
+        <div class="col-3">
+            <img src="view/images/mobile.png">
+            <h2>Android Soon!</h2>
+            <p></p>
+
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <?php require_once "templates/footer.php" ?>
+
+</article>

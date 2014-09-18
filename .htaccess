@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule ^([A-Z0-9a-z]+)$ image.php?file_token=$1 [QSA,L]
+RewriteRule ^([A-Z0-9a-z]+)$ index.php?file_token=$1&c=images&a=index [QSA,L]
+RewriteRule ^(admin|index)\/?(\d*[a-zA-Z]*)\/?+([a-zA-Z]*)?+\/?+([a-zA-Z]*)?+$ $1.php?c=$2&a=$3&page=$4 [QSA,L]

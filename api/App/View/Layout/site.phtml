@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title><?php echo $this->pageTitle;?></title>
+    <link rel="stylesheet" type="text/css" href="view/css/main.css">
+    <link rel="stylesheet" type="text/css" href="view/css/dropzone.css"/>
+    <link rel='stylesheet' id='google-font2-css'  href='//fonts.googleapis.com/css?family=Merriweather%3A300%2C400%2C700&#038;ver=2.0.0-RC2' type='text/css' media='all'/>
+    <link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
+    <script src="view/js/jquery.js"></script>
+    <script src="view/js/dropzone.js"></script>
+
+    <script>
+        Dropzone.options.uploadfile = {
+            success:function(file,response,xhr){
+
+                if(response.success){
+                    $('#image-url').val(response.url);
+                    $('#file-upload-container').addClass('image_uploaded_success');
+                }
+            }
+        };
+    </script>
+
+    <style>
+
+    </style>
+
+    <meta property="og:type"            content="website" />
+    <meta property="og:url"             content="http://www.giladt.com/picabo" />
+    <meta property="og:title"           content="<?php echo '' ?>" />
+    <meta property="og:image"           content="" />
+
+</head>
+<body>
+<?php echo $this->pageContent; ?>
+</body>
+</html>
