@@ -1,10 +1,8 @@
 <html>
 <head>
-    <title>Exit</title>
+    <title>Picabo - send self-deleted images through any platform</title>
     <link rel="stylesheet" type="text/css" href="view/css/main.css">
     <link rel="stylesheet" type="text/css" href="view/css/dropzone.css"/>
-    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Pacifico' >
-    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Changa+One'>
     <link rel='stylesheet' id='google-font2-css'  href='//fonts.googleapis.com/css?family=Merriweather%3A300%2C400%2C700&#038;ver=2.0.0-RC2' type='text/css' media='all'/>
     <link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
     <script src="view/js/jquery.js"></script>
@@ -29,20 +27,19 @@
         .dropzone-conteiner{width:800px; height:360px}
         .dropzone-conteiner input{display: block; margin:0 auto; width:80%; line-height: 30px; font-size: 30px; text-align: center}
     </style>
+	
+	<meta property="og:type"            content="website" /> 
+	<meta property="og:url"             content="http://www.giladt.com/picabo" />
+	<meta property="og:title"           content="<?php echo $title ?>" /> 
+	<meta property="og:image"           content="" /> 
+	
 </head>
 <body>
 
 
 <article id="main" class="center" style="">
-    <header>
-        <div id="counter">
-            <?
-            require_once 'Uploads.php';
-            ?>
-            <span id="number"><?php echo htmlspecialchars(Uploads::getCount())?></span> images has been self-destructively shared
-        </div>
-    </header>
-    <h1 class="center"><span>PICABO</span></h1>
+	<?php require_once "templates/header.php" ?>
+    <h1 class="center"><img src="view/images/logo-200.png"></h1>		
     <h2 id="subtitle">Share Self-Deleted Images<br> Secretly & Effortlessly.</h2>
     <div class="dropzone-conteiner" id="form_container">
         <form  class='dropzone' id="uploadfile" action="upload_file.php" method="post" enctype="multipart/form-data"></form>
@@ -73,22 +70,8 @@
     </div>
     <div class="clear"></div>
 
+	<?php require_once "templates/footer.php" ?>
 
-    <footer>
-        <hr>
-        <div id="copyright">
-            All copyrights reserved &copy; 2014 <strong>&#183;</strong> Made with &#9825 in Tel-Aviv <strong>&#183;</strong> ### Images shared!
-        </div>
-        <div id="menu">
-            <a href="./">Home</a>
-            <strong>&#183;</strong>
-            <a href="mailto:a@a.com">Contact Us</a>
-            <strong>&#183;</strong>
-            <a href="changes.php">Changes</a>
-
-        </div>
-
-    </footer>
 
 
 </article>
