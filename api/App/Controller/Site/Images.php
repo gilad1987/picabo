@@ -5,6 +5,9 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
     {
         $token = $_GET['file_token'];
 
+        if(preg_match('/^([A-Z0-9a-z]{7})$/i', $token) == false){
+
+        }
         $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'" ;
 
         $result = App_Db::getInstance()->getConn()->query($query);
