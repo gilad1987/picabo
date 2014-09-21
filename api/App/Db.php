@@ -1,5 +1,5 @@
 <?php
-class App_Db
+class App_Dbzasfdasdasdasd
 {
 	private $host = DB_HOST;	
 	private $schema = DB_SCHEMA;	
