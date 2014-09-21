@@ -54,6 +54,7 @@ class App_Dispatcher
        		}
 
 
+
             $ctrl = new $className();
             $ctrl->dispatch($http->getActionName().'Action');
             
