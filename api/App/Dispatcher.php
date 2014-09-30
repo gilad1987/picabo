@@ -43,7 +43,8 @@ class App_Dispatcher
 //           }
 
        		$className = 'App_Controller_'.$http->getModuleName().'_'.$http->getControllerName();
-       		
+
+
        		if($http->isAdminModule()){
        			$auth = App_Auth::getInstance()->getInstance();
        			if(!$auth->isAuthAction()){
@@ -53,26 +54,15 @@ class App_Dispatcher
        			}
        		}
 
-
-
             $ctrl = new $className();
             $ctrl->dispatch($http->getActionName().'Action');
-            
+
         }catch (App_Request_Params_Exceptions $e){
-            $message =  $e->getMessage();
-            echo json_encode(array('error'=>$message));
-
+            die('parmas');
         }catch (App_Mysql_Exceptions $e){
-
-            if(DISPLAY_MYSQL_ERRORS){
-                $message =  $e->getMessage();
-                echo json_encode(array('error'=>$message));
-            }
-
+            die('SQL');
         }catch(Exception $e){
-        	if(DISPLAY_EXCEPTIONS){
-                echo $e->getMessage();
-            }
+            die('Exception ');
         }
     }
 }

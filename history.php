@@ -17,7 +17,7 @@
 				<p>made some graphic changes</p>
 			</div>
 			<div class="post">
-				<h3 id="date">16-sep-2014</h3>asd
+				<h3 id="date">16-sep-2014</h3>
 				<p>Alpha web-version is up and running on <a href="">giladt.com/exit</a></p>
 			</div>
 			<div class="post">

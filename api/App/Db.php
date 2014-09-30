@@ -32,8 +32,7 @@ class App_Db
 				$error = 'Connection failed: ' . $e->getMessage(); 
 				echo json_encode(array("error"=>$error));
 			}else{
-				$view = App_View::getInstance();
-				$view->showErrorPage(500,"איראה שגיאה אנה נסה מאוחר יותר.");
+
 			}
 		}
 	}
