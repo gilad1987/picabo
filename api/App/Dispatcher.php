@@ -58,11 +58,11 @@ class App_Dispatcher
             $ctrl->dispatch($http->getActionName().'Action');
 
         }catch (App_Request_Params_Exceptions $e){
-            die('parmas');
+            die($e->getMessage());
         }catch (App_Mysql_Exceptions $e){
-            die('SQL');
+            die($e->getMessage());
         }catch(Exception $e){
-            die('Exception ');
+            die($e->getMessage());
         }
     }
 }

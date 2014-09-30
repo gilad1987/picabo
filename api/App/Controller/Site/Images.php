@@ -6,7 +6,7 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
         $token = $_GET['file_token'];
 
         if(preg_match('/^([A-Z0-9a-z]{7})$/i', $token) == false){
-
+            App_Headers::redirect(array());
         }
         $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'" ;
 
@@ -23,7 +23,6 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
         $src = 'data: '.$this->getMimeType($imageModel->src).';base64,'.$imageData;
 
         $this->delete($imageModel);
-
         $this->_view->image_src = $src;
     }
 

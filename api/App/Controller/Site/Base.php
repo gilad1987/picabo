@@ -5,6 +5,8 @@ class App_Controller_Site_Base extends App_Controller
     {
         $this->_view->pageTitle = APP_TITLE;
         $this->_view->contentTitle = 'עמוד ראשי';
+        $model = new App_Model_DbTable_Uploads();
+        $this->_view->uploads_count = $model->getCount();
         parent::preDispatch();
     }
 

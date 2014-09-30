@@ -38,9 +38,6 @@ class App_Config
 		$this->config = (object)parse_ini_file("config.ini", INI_SCANNER_RAW);
 		$this->parseINI();
 		$this->init();
-// 		var_dump($_SERVER);
-// 		var_dump(get_object_vars($this));
-// 		die();
 	}
 	
 	private function init()
@@ -49,7 +46,7 @@ class App_Config
 		self::$base_directory = BASE_DIRECTORY;
 		
 
-        if(self::$base_directory  = ''){
+        if(self::$base_directory  == ''){
             define("BASE_URL", 'http://' . $_SERVER['HTTP_HOST'].'/');
         }else{
             define("BASE_URL",'http://' . $_SERVER['HTTP_HOST']. '/' .BASE_DIRECTORY.'/');
@@ -65,7 +62,6 @@ class App_Config
 		$this->setSetting();
 
         define("APP_TITLE", $this->currentMode->app->title);
-
 	}
 	
 	private function setSetting()
@@ -98,7 +94,8 @@ class App_Config
 		if($_SERVER['SERVER_PORT'] == $this->development->port){
 			return $this->currentMode = $this->development;
 		}
-		
+
+
 		throw new Exception("invalid stag");
 	}
 	
