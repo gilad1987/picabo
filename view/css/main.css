@@ -232,5 +232,5 @@ footer #menu
 .file_upload_container.image_uploaded_success .input_image_url_container{display: block;margin: 0 auto;width: 487px;}
 .file_upload_container.image_uploaded_success .dropzone{display: none}
 
-
+.dz-preview.dz-processing.dz-image-preview{position: relative;top: 65px;left: 296px;}
 

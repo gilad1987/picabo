@@ -8,7 +8,7 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
         if(preg_match('/^([A-Z0-9a-z]{7})$/i', $token) == false){
             App_Headers::redirect(array());
         }
-        $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'" ;
+        $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'";
 
         $result = App_Db::getInstance()->getConn()->query($query);
         $imageModel = $result->fetchObject();
@@ -16,13 +16,14 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
         if(empty($imageModel) || (!empty($imageModel)  && $imageModel->is_deleted) ){
             return null;
         }
-        $query = "UPDATE `uploads` SET `is_deleted` = '1' WHERE id = '{$imageModel->id}'" ;
+        $time = date('Y-m-d H:i:s');
+        $query = "UPDATE `uploads` SET `is_deleted` = '1',`time_open`='{$time}' WHERE id = '{$imageModel->id}'" ;
         $result = App_Db::getInstance()->getConn()->query($query);
 
         $imageData = base64_encode(file_get_contents($imageModel->src));
         $src = 'data: '.$this->getMimeType($imageModel->src).';base64,'.$imageData;
 
-        $this->delete($imageModel);
+        self::delete($imageModel->src);
         $this->_view->image_src = $src;
     }
 
@@ -38,13 +39,13 @@ class App_Controller_Site_Images extends App_Controller_Site_Base
         return $fileMimeType;
     }
 
-    private function delete($image)
+    public static function delete($src)
     {
-        $handle = fopen($image->src,'r+');
-        $file_size = filesize($image->src);
+        $handle = fopen($src,'r+');
+        $file_size = filesize($src);
         $string = str_repeat("0",$file_size);
         fwrite($handle,$string,$file_size);
         fclose($handle);
-        unlink($image->src);
+        unlink($src);
     }
 }

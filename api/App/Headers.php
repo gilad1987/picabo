@@ -8,19 +8,20 @@ class App_Headers
 		$module = App_Http::getInstance()->getModuleName();
 		
 		$dir = BASE_DIRECTORY;
+
 		$url = '';
 		if(!empty($dir)){
 			$url = $dir;
 		}
-		$url .= '/'. strtolower($module);
-		if(isset($params['ctrl'])){
-			$url .= '/'. $params['ctrl'];
-		}
-		if(isset($params['act'])){
-			$url .= '/'. $params['act'];
-		}
-		
-		header('Location: http://'.App_Config::$base_url.$url);
+
+//		$url .= strtolower($module);
+        if($params['ctrl'] =='index' && $params['act'] == 'index'){
+
+        }else{
+            $url .= $params['ctrl'];
+            $url .= '/'. $params['act'];
+        }
+		header('Location: '.BASE_URL.$url);
 	}
 	
 	public static function noCache()
