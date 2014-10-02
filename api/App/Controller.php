@@ -14,7 +14,10 @@ class App_Controller
     public function __construct()
     {
         $this->_http = App_Http::getInstance();
-        $this->_view = App_View::getInstance();  
+        $this->_view = App_View::getInstance();
+        $this->_view->js=array();
+        $this->_view->css=array();
+
     }
 
     

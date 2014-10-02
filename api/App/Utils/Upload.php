@@ -24,11 +24,9 @@ class App_Utils_Upload
             return false;
         }
 
-        if($file_source['size'] > $size*1024*1024){
+        if($file_source['size'] > $size*1024*1024) {
             return false;
         }
-
-
 
         $file_name = $this->getRandomName();
         $destination = self::UPLOADS_DIRECTORY.'/'.$file_name.'.'.$file_extension;
