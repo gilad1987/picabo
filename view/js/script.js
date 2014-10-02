@@ -11,9 +11,7 @@ Dropzone.options.uploadfile = {
     }
 };
 
-document.onkeydown = function (e) {
-    console.log(e.which);
-}
+s
 
 window.addEventListener("keyup",kPress,false);
 function kPress(e)
