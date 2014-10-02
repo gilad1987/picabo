@@ -1,12 +1,19 @@
 <?php
 class App_Controller_Site_Images extends App_Controller_Site_Base
 {
+    protected function preDispatch(){
+        $this->_view->js[]='view/js/jquery.js';
+        $this->_view->js[]='view/js/images.js';
+        $this->_view->css[]='view/css/main.css';
+        parent::preDispatch();
+    }
+
     public function indexAction()
     {
         $token = $_GET['file_token'];
 
         if(preg_match('/^([A-Z0-9a-z]{7})$/i', $token) == false){
-            App_Headers::redirect(array());
+//            App_Headers::redirect(array());
         }
         $query = "SELECT * FROM `uploads` WHERE `token` = '{$token}'";
 
