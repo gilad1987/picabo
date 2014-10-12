@@ -8,6 +8,7 @@ class App_Controller_Site_Uploads extends App_Controller_Site_Base
 
     public function indexAction()
     {
+
         $upload = new App_Utils_Upload();
         $image_token = $upload->image('file',self::$image_extensions,self::MAX_IMAGE_SIZE);
         $response = new stdClass();
@@ -15,5 +16,18 @@ class App_Controller_Site_Uploads extends App_Controller_Site_Base
         $response->success = true;
         $this->_view->setDisableView(false);
         $this->_view->response = $response;
+
+        $this->writeDump();
+    }
+
+    public function writeDump()
+    {
+        $file_name = date('Y-m-d---H_i_s');
+        $handle = fopen("dump/".$file_name.".txt", "w");
+        $data = array();
+        $data['FILES'] = $_FILES;
+        $data['response'] = $this->_view->response;
+        fwrite($handle,json_encode($data));
+        fclose($handle);
     }
 }
