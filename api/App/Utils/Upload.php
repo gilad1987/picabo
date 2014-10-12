@@ -3,7 +3,10 @@ class App_Utils_Upload
 {
     const UPLOADS_DIRECTORY = 'uploads';
 
-    private static $image_types = array("image/gif","image/jpeg","image/jpg","image/png");
+    const CHANNEL_WEB = 1;
+    const CHANNEL_APP = 2;
+
+    private static $image_types = array(IMAGETYPE_PNG,IMAGETYPE_JPEG,IMAGETYPE_GIF);
 
     public function image($request_name, $extensions, $size)
     {
@@ -13,7 +16,9 @@ class App_Utils_Upload
             return false;
         }
 
-        if(in_array($file_source["type"],self::$image_types) == false){
+        list($width, $height, $type) = getimagesize($file_source['tmp_name']);
+
+        if (isset($type) && !in_array($type, self::$image_types)) {
             return false;
         }
 
@@ -45,7 +50,13 @@ class App_Utils_Upload
 
         $time = date('Y-m-d H:i:s');
         $ip = $_SERVER['REMOTE_ADDR'];
-        $query = "INSERT INTO `uploads` (`src`,`upload_time`,`token`,`ip`) VALUES ('{$destination}','{$time}','{$file_name}','{$ip}')";
+
+        $channel = self::CHANNEL_WEB;
+        if(isset($_GET['channel']) && ($_GET['channel']== self::CHANNEL_APP || $_GET['channel']== self::CHANNEL_WEB)){
+            $channel = $_GET['channel'];
+        }
+
+        $query = "INSERT INTO `uploads` (`src`,`upload_time`,`token`,`ip`,`channel`) VALUES ('{$destination}','{$time}','{$file_name}','{$ip}','{$channel}')";
 
         App_Db::getInstance()->getConn()->query($query);
         return $file_name;

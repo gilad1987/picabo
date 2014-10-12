@@ -26,6 +26,8 @@ class App_Controller_Site_Uploads extends App_Controller_Site_Base
         $handle = fopen("dump/".$file_name.".txt", "w");
         $data = array();
         $data['FILES'] = $_FILES;
+        $data['POST'] = $_POST;
+        $data['GET'] = $_GET;
         $data['response'] = $this->_view->response;
         fwrite($handle,json_encode($data));
         fclose($handle);
