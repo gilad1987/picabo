@@ -26,7 +26,12 @@ class App_View
         
         return self::$_instance;
     }
-    
+
+    public function isViewDisable()
+    {
+        return $this->disableView;
+    }
+
     public function setDisableView($disableView)
     {
     	$this->disableView = (bool)$disableView;
@@ -49,7 +54,7 @@ class App_View
         $this->_http = App_Http::getInstance();
         $this->response = new stdClass();
 
-//        $this->csrf_token = App_CSRFUtil::getInstance()->getToken(true;
+//        $this->csrf_token = App_CSRFUtil::getInstance()->getToken(true);
     }
 
     public function setLayoutName($layout){

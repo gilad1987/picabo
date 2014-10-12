@@ -52,7 +52,7 @@ class App_Controller
     protected function postDispatch()
     {
 
-        if($this->_http->getParam('parse') == 'json' || $this->_http->isXHR()){
+        if($this->_http->getParam('parse') == 'json' || $this->_http->isXHR() || $this->_view->isViewDisable()){
             $this->_view->returnJson();
         }else{
             $this->_view->render();
