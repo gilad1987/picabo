@@ -1,4 +1,5 @@
 <?php
+
 class App_Utils_Upload
 {
     const UPLOADS_DIRECTORY = 'uploads';
