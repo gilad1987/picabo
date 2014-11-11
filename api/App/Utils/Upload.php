@@ -9,7 +9,7 @@ class App_Utils_Upload
 
     private static $image_types = array(IMAGETYPE_PNG,IMAGETYPE_JPEG,IMAGETYPE_GIF);
 
-    public function image($request_name, $extensions, $size)
+    public function image($request_name, $extensions, $size, $throw=false)
     {
         $file_source = isset($_FILES[$request_name]) ? $_FILES[$request_name] : null;
 
@@ -38,16 +38,19 @@ class App_Utils_Upload
         $destination = self::UPLOADS_DIRECTORY.'/'.$file_name.'.'.$file_extension;
         move_uploaded_file($file_source['tmp_name'],$destination);
 
-        $compression_type = Imagick::COMPRESSION_JPEG;
-        $thumbnail = new Imagick($destination);
-        $thumbnail->setImageCompression($compression_type);
-        $thumbnail->setImageCompressionQuality(75);
-        $thumbnail->stripImage();
-        $image_width = $thumbnail->getImageWidth();
-        $width = min($image_width,800);
-        $thumbnail->thumbnailImage($width,null);
-        App_Controller_Site_Images::delete($destination);
-        $thumbnail->writeImage($destination);
+        if($_GET['channel']== self::CHANNEL_APP){
+            $compression_type = Imagick::COMPRESSION_JPEG;
+            $thumbnail = new Imagick($destination);
+            $thumbnail->setImageCompression($compression_type);
+            $thumbnail->setImageCompressionQuality(75);
+            $thumbnail->stripImage();
+            $image_width = $thumbnail->getImageWidth();
+            $width = min($image_width,800);
+            $thumbnail->thumbnailImage($width,null);
+            App_Controller_Site_Images::delete($destination);
+            $thumbnail->writeImage($destination);
+        }
+
 
         $time = date('Y-m-d H:i:s');
         $ip = $_SERVER['REMOTE_ADDR'];
